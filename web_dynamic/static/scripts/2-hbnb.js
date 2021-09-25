@@ -1,4 +1,4 @@
-$(window).load (function () {
+window.onload = () => {
     const amenity_ids = {};
     const $apiStatus = $("div#api_status");
     const $subtitle = $('DIV.amenities > H4');
@@ -20,4 +20,4 @@ $(window).load (function () {
             $apiStatus.removeClass("available");
         }
     });
-});
+};
