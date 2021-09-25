@@ -24,6 +24,9 @@ button:hover {
 .filters div {
     display: inline-grid;
 }
+.filters > div {
+    position: relative;
+}
 .filters h2 {
     margin-left: 15%;
     margin-top: 0;
@@ -40,6 +43,10 @@ button:hover {
     margin-top: 0;
     font-weight: 400;
     font-size: 14px;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+	width: 85%;
 }
 .locations {
     height: 100%;
@@ -52,6 +59,8 @@ button:hover {
 }
 
 .popover {
+    position: absolute;
+	top: 100%;
     visibility: hidden;
     width: 100%;
     border: 1px solid #DDDDDD;
@@ -62,6 +71,11 @@ button:hover {
     overflow-y: scroll;
     scrollbar-width: none;
     max-height: 300px;
+}
+
+.popover :is(label, input){
+	cursor: pointer;
+	height: 100%;
 }
 
 .popover::-webkit-scrollbar{

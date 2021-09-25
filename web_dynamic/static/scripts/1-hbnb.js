@@ -1,4 +1,4 @@
-$(window).load (function () {
+window.onload = () => {
     // We leave the variable outside bc it needs to be updated eith every event
     // if we put the variable inside the event, this will be isolated for only the event
     const amenity_ids = {};
@@ -14,4 +14,4 @@ $(window).load (function () {
         const nameAmenities = Object.values(amenity_ids).join(', ');
         subtitleElement.text(nameAmenities);
     });
-});
+};
