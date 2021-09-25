@@ -25,22 +25,24 @@ window.onload = () => {
     });
     // POST request of items-places
     const requestPlaces = (response) => {
-        response.forEach(({name, description, number_rooms, number_bathrooms, price_by_night, max_guest}) => {
-            $(`
-            <article>
-            <div class="title_box">
-                <h2>${name}</h2>
-                <div class="price_by_night">${price_by_night}</div>
-            </div>
-            <div class="information">
-                <div class="max_guest">${max_guest} Guest${max_guest !== 1 ? 's' : ''}</div>
-                <div class="number_rooms">${number_rooms} Bedroom${number_rooms !== 1 ? 's' : ''}</div>
-                <div class="number_bathrooms">${number_bathrooms} Bathroom${number_bathrooms !== 1 ? 's' : ''}</div>
-            </div>
-            <div class="description">${description}</div>
-            </article>
-            `).appendTo('SECTION.places');
-        });
+      debugger;
+      console.log(response);
+      response.forEach(({name, description, number_rooms, number_bathrooms, price_by_night, max_guest}) => {
+          $(`
+          <article>
+          <div class="title_box">
+              <h2>${name}</h2>
+              <div class="price_by_night">${price_by_night}</div>
+          </div>
+          <div class="information">
+              <div class="max_guest">${max_guest} Guest${max_guest !== 1 ? 's' : ''}</div>
+              <div class="number_rooms">${number_rooms} Bedroom${number_rooms !== 1 ? 's' : ''}</div>
+              <div class="number_bathrooms">${number_bathrooms} Bathroom${number_bathrooms !== 1 ? 's' : ''}</div>
+          </div>
+          <div class="description">${description}</div>
+          </article>
+          `).appendTo('SECTION.places');
+      });
     }
     $.ajax({
         type: 'POST',
