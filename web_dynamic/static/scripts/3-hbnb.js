@@ -25,30 +25,34 @@ window.onload = () => {
     });
     // POST request of items-places
     const requestPlaces = (response) => {
-      debugger;
       console.log(response);
       response.forEach(({name, description, number_rooms, number_bathrooms, price_by_night, max_guest}) => {
           $(`
           <article>
           <div class="title_box">
-              <h2>${name}</h2>
-              <div class="price_by_night">${price_by_night}</div>
+              <h2>${name || 'I have no a name'}</h2>
+              <div class="price_by_night">${price_by_night || '$$'}</div>
           </div>
           <div class="information">
               <div class="max_guest">${max_guest} Guest${max_guest !== 1 ? 's' : ''}</div>
               <div class="number_rooms">${number_rooms} Bedroom${number_rooms !== 1 ? 's' : ''}</div>
               <div class="number_bathrooms">${number_bathrooms} Bathroom${number_bathrooms !== 1 ? 's' : ''}</div>
           </div>
-          <div class="description">${description}</div>
+          <div class="description">${description || 'I have no description'}</div>
           </article>
           `).appendTo('SECTION.places');
       });
-    }
-    $.ajax({
-        type: 'POST',
-        url: 'http://0.0.0.0:5001/api/v1/places_search/',
-        data: JSON.stringify({}),
-        success: requestPlaces,
-        dataType: 'application/json'
-    });
+    };
+
+    const placesPostConfig = {
+      method: 'POST',
+      body: JSON.stringify({}),
+      headers: {
+        'Content-Type': 'application/json'
+      },
+    };
+
+    fetch('http://0.0.0.0:5001/api/v1/places_search/', placesPostConfig)
+      .then(dataRaw => dataRaw.json())
+      .then(requestPlaces);
 };
