@@ -1,6 +1,6 @@
-$(window).load (function () {
+window.onload = (function () {
     // Gloval variables for current view
-    const amenity_ids = {};
+    const amenityIds = {};
     const $apiStatus = $("div#api_status");
     const $subtitle = $('DIV.amenities > H4');
     // Add amenities selected to H4
@@ -8,15 +8,16 @@ $(window).load (function () {
         const id = $(this).attr('data-id');
         if ($(this).is(":checked")) {
             const name = $(this).attr('data-name');
-            amenity_ids[id] = name;
+            amenityIds[id] = name;
         } else {
-            delete amenity_ids[id];
+            delete amenityIds[id];
         }
-        const nameAmenities = Object.values(amenity_ids).join(', ');
+        const nameAmenities = Object.values(amenityIds).join(', ');
         $subtitle.text(nameAmenities);
     });
     // GET request of status code
     $.get('http://0.0.0.0:5001/api/v1/status/', function ( {status} ) {
+        console.log(status)
         if (status === 'OK') {
             $apiStatus.addClass("available");
         } else {

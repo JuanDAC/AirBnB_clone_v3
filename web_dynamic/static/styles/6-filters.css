@@ -40,6 +40,14 @@ button:hover {
     margin-top: 0;
     font-weight: 400;
     font-size: 14px;
+    width: 85%;
+    height: fit-content;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.filters > div{
+    position: relative;
 }
 .locations {
     height: 100%;
@@ -52,6 +60,8 @@ button:hover {
 }
 
 .popover {
+    position: absolute;
+    top: 100%;
     visibility: hidden;
     width: 100%;
     border: 1px solid #DDDDDD;

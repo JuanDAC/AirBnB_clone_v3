@@ -1,16 +1,16 @@
-$(window).load (function () {
-    const amenity_ids = {};
+window.onload = (function () {
+    const amenityIds = {};
     const $apiStatus = $("div#api_status");
     const $subtitle = $('DIV.amenities > H4');
     $('DIV.amenities DIV.popover INPUT[type="checkbox"]').change(function () {
         const id = $(this).attr('data-id');
         if ($(this).is(":checked")) {
             const name = $(this).attr('data-name');
-            amenity_ids[id] = name;
+            amenityIds[id] = name;
         } else {
-            delete amenity_ids[id];
+            delete amenityIds[id];
         }
-        const nameAmenities = Object.values(amenity_ids).join(', ');
+        const nameAmenities = Object.values(amenityIds).join(', ');
         $subtitle.text(nameAmenities);
     });
     $.get('http://0.0.0.0:5001/api/v1/status/', function ( {status} ) {
