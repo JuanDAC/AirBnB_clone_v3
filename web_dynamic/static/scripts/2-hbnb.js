@@ -1,5 +1,5 @@
-window.onload = (function () {
-    const amenityIds = {};
+window.onload = () => {
+    const amenity_ids = {};
     const $apiStatus = $("div#api_status");
     const $subtitle = $('DIV.amenities > H4');
     $('DIV.amenities DIV.popover INPUT[type="checkbox"]').change(function () {
@@ -20,4 +20,4 @@ window.onload = (function () {
             $apiStatus.removeClass("available");
         }
     });
-});
+};
