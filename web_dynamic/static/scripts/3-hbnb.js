@@ -1,4 +1,4 @@
-$(window).load (function () {
+window.onload = () => {
     // Gloval variables for current view
     const amenity_ids = {};
     const $apiStatus = $("div#api_status");
@@ -49,4 +49,4 @@ $(window).load (function () {
         success: requestPlaces,
         dataType: 'application/json'
     });
-});
+};
