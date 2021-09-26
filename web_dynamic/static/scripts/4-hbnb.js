@@ -16,7 +16,7 @@ window.onload = () => {
         const nameAmenities = Object.values(amenityIds).join(', ');
         $subtitle.text(nameAmenities);
     });
-    $buttonFilters.click(() => getPlaces({amenities: Object.values(amenityIds)}));
+    $buttonFilters.click(() => getPlaces({amenities: Object.keys(amenityIds)}));
     // GET request of status code
     $.get('http://0.0.0.0:5001/api/v1/status/', function ( {status} ) {
         if (status === 'OK') {
@@ -32,7 +32,8 @@ window.onload = () => {
 
 
 function requestPlaces (response) {
-  response.forEach(({name, description, number_rooms, number_bathrooms, price_by_night, max_guest}) => {
+  response.forEach(({name, description, number_rooms, number_bathrooms, price_by_night, max_guest, amenities}) => {
+    console.log(amenities)
       $(`
       <article>
       <div class="title_box">
@@ -53,7 +54,7 @@ function requestPlaces (response) {
 function getPlaces(filters = {}) {
 const placesPostConfig = {
   method: 'POST',
-  body: JSON.stringify({}),
+  body: JSON.stringify(filters),
   headers: {
     'Content-Type': 'application/json'
   },
