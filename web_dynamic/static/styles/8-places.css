@@ -99,3 +99,57 @@
 .user {
   margin-bottom: 1.5%;
 }
+
+.places .amenities {
+  width: 100%;
+  overflow: hidden;
+}
+.places .amenities h2 {
+    padding: 5% 0 5% 0;
+    padding-bottom: 2%;
+    border-bottom: 1px solid #575757;
+}
+
+.places .amenities>ul {
+    list-style: none;
+    display: flex;
+    transition: transform 200ms;
+    transform: scaley(0);
+    transform-origin: center top;
+    max-height: 0;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0;
+}
+
+.places .amenities>ul li {
+    background-size: 20px;
+    padding-left: 25px;
+    padding-bottom: 25px;
+    background-repeat: no-repeat;
+    transition: transform 200ms;
+    line-height: 25px;
+}
+
+.places .amenities>ul li:hover {
+    transform-origin: left center;
+    transform: scale(1.3);
+}
+
+.tv {
+    background-image: url(../images/icon_tv.png);
+}
+
+.wifi {
+    background-image: url(../images/icon_wifi.png);
+}
+
+.pets {
+    background-image: url(../images/icon_pets.png);
+}
+
+
+.places .amenities:hover > ul { 
+    max-height: max-content;
+    transform: scaley(1);
+}

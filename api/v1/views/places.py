@@ -137,6 +137,7 @@ def places_search():
     except Exception:
         abort(400, description="Not a JSON")
 
+
     if data is None:
         abort(400, description="Not a JSON")
 
@@ -184,7 +185,10 @@ def places_search():
     places = []
     for p in list_places:
         d = p.to_dict()
-        d.pop('amenities', None)
+        current_amenities = d.get('amenities', None)
+        if current_amenities:
+            d['amenities'] = [a.name for a in current_amenities]
+        # d.pop('amenities', None)
         places.append(d)
 
     return jsonify(places)

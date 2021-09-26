@@ -33,19 +33,31 @@ window.onload = () => {
 
 function requestPlaces (response) {
   response.forEach(({name, description, number_rooms, number_bathrooms, price_by_night, max_guest, amenities}) => {
-    console.log(amenities)
+      amenities = (amenities || []).map(amenity => `<li class="${amenity}">${amenity}</li>`) || [];
+      
       $(`
       <article>
-      <div class="title_box">
-          <h2>${name || 'I have no a name'}</h2>
-          <div class="price_by_night">${price_by_night || '$$'}</div>
-      </div>
-      <div class="information">
-          <div class="max_guest">${max_guest} Guest${max_guest !== 1 ? 's' : ''}</div>
-          <div class="number_rooms">${number_rooms} Bedroom${number_rooms !== 1 ? 's' : ''}</div>
-          <div class="number_bathrooms">${number_bathrooms} Bathroom${number_bathrooms !== 1 ? 's' : ''}</div>
-      </div>
-      <div class="description">${description || 'I have no description'}</div>
+        <div class="title_box">
+            <h2>${name || 'I have no a name'}</h2>
+            <div class="price_by_night">${price_by_night || '$$'}</div>
+        </div>
+        <div class="information">
+            <div class="max_guest">${max_guest} Guest${max_guest !== 1 ? 's' : ''}</div>
+            <div class="number_rooms">${number_rooms} Bedroom${number_rooms !== 1 ? 's' : ''}</div>
+            <div class="number_bathrooms">${number_bathrooms} Bathroom${number_bathrooms !== 1 ? 's' : ''}</div>
+        </div>
+        <div class="description">${description || 'I have no description'}</div>
+       ${ amenities.length ?
+       `
+        <div class="amenities" role="list">
+          <h2>Amenities</h2>
+          <ul>
+            ${amenities.join('')}
+          </ul>
+        </div>
+       ` : ''
+       } 
+        
       </article>
       `).appendTo('SECTION.places');
   });
