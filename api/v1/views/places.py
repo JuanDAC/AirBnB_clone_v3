@@ -124,12 +124,21 @@ def places_search():
     Retrieves all Place objects depending of the JSON in the body
     of the request
     """
-    print('/search')
+    from json import loads
 
-    if request.get_json() is None:
+    data = None
+
+    try:
+        if request.is_json:
+            data = request.get_json()
+        else:
+            data = request.get_data()
+            data = loads(data.decode('UTF-8'))
+    except Exception:
         abort(400, description="Not a JSON")
 
-    data = request.get_json()
+    if data is None:
+        abort(400, description="Not a JSON")
 
     if data and len(data):
         states = data.get('states', None)
